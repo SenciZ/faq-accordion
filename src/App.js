@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { data } from "./data";
+import { useState } from "react";
 
 function App() {
+  function showTheAnswer(e) {
+    e.target.parentElement.childNodes[1].classList.toggle("show");
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {data.map((item) => {
+        return (
+          <div className="questionHolder" key={item.question}>
+            <h4 onClick={(e) => showTheAnswer(e)}>{item.question}</h4>
+            <p className="paragraph">{item.answer}</p>
+          </div>
+        );
+      })}
     </div>
   );
 }
